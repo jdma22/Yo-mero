@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Juntos ❤️</title>
+
+<style>
+body{
+    margin:0;
+    min-height:200vh;
+    background:#01020a;
+    font-family: Arial, sans-serif;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* ❤️ ENCABEZADO */
+.header{
+    position:absolute;
+    top:30px;
+    width:100%;
+    text-align:center;
+    font-size:32px;
+    font-style:italic;
+    letter-spacing:2px;
+    z-index:10;
+}
+
+/* ⭐ ESTRELLAS */
+.stars{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:
+        radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(2px 2px at 70% 20%, white, transparent),
+        radial-gradient(2px 2px at 40% 80%, white, transparent),
+        radial-gradient(1px 1px at 90% 60%, white, transparent),
+        radial-gradient(1px 1px at 10% 70%, white, transparent);
+    animation: moveStars 120s linear infinite;
+}
+
+@keyframes moveStars{
+    from{transform:translateY(0);}
+    to{transform:translateY(-800px);}
+}
+
+/* 🌌 VIA LACTEA */
+.milkyway{
+    position:fixed;
+    width:200%;
+    height:200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 60%);
+    filter: blur(80px);
+    animation: rotateGalaxy 120s linear infinite;
+}
+
+@keyframes rotateGalaxy{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
+}
+
+/* 🌙 LUNA */
+.moon-container{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    text-align:center;
+    z-index:5;
+}
+
+.moon{
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    background: radial-gradient(circle at 30% 30%, #fff, #ddd 50%, #aaa 80%);
+    box-shadow:0 0 80px rgba(255,255,255,0.9), 0 0 200px rgba(255,255,255,0.4);
+    animation: moonGlow 4s ease-in-out infinite alternate;
+    position:relative;
+    cursor:pointer;
+}
+
+@keyframes moonGlow{
+    from{box-shadow:0 0 80px white, 0 0 200px rgba(255,255,255,0.4);}
+    to{box-shadow:0 0 120px white, 0 0 260px rgba(255,255,255,0.7);}
+}
+
+.moon::after{
+    content:"";
+    position:absolute;
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    background:#01020a;
+    left:90px;
+}
+
+/* mensaje secreto */
+.secret-message{
+    margin-top:20px;
+    max-width:400px;
+    opacity:0;
+    transition:0.5s;
+    font-size:20px;
+}
+
+/* ⏳ CONTADOR */
+.counter{
+    margin-top:40px;
+    font-size:26px;
+}
+
+/* ❤️ BOTON */
+.love-btn{
+    margin-top:20px;
+    padding:12px 30px;
+    border:none;
+    border-radius:20px;
+    font-size:18px;
+    background:#ff4d6d;
+    color:white;
+    cursor:pointer;
+}
+
+/* ❤️ CORAZONES */
+.heart{
+    position:fixed;
+    bottom:-20px;
+    color:#ff4d6d;
+    animation: floatUp linear forwards;
+}
+
+@keyframes floatUp{
+    to{
+        transform:translateY(-120vh);
+        opacity:0;
+    }
+}
+
+/* ✨ ESTRELLA FUGAZ */
+.shooting-star{
+    position:fixed;
+    width:3px;
+    height:80px;
+    background:linear-gradient(white, transparent);
+    transform:rotate(45deg);
+    animation:shoot 1s linear;
+}
+
+@keyframes shoot{
+    from{transform:translate(0,0) rotate(45deg);}
+    to{transform:translate(600px,600px) rotate(45deg); opacity:0;}
+}
+
+/* 📍 LINEA DEL TIEMPO */
+.timeline{
+    margin-top:900px;
+    padding:100px 0;
+}
+
+.timeline-container{
+    width:80%;
+    margin:auto;
+    position:relative;
+}
+
+.timeline-container::after{
+    content:'';
+    position:absolute;
+    width:4px;
+    background:white;
+    top:0;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    opacity:0.4;
+}
+
+.timeline-item{
+    padding:20px 40px;
+    position:relative;
+    width:50%;
+    opacity:0;
+    transform:translateY(50px);
+    transition:1s;
+}
+
+.timeline-item.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.timeline-item.left{
+    left:0;
+    text-align:right;
+}
+
+.timeline-item.right{
+    left:50%;
+}
+
+.timeline-item::after{
+    content:'';
+    position:absolute;
+    width:18px;
+    height:18px;
+    background:white;
+    border-radius:50%;
+    top:30px;
+    right:-9px;
+}
+
+.timeline-item.right::after{
+    left:-9px;
+}
+
+.timeline-content{
+    background:rgba(255,255,255,0.08);
+    padding:20px;
+    border-radius:12px;
+    backdrop-filter: blur(10px);
+}
+
+.timeline-date{
+    font-weight:bold;
+    margin-bottom:10px;
+    color:#ffd6e0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 MUSICA YOUTUBE -->
+<iframe width="0" height="0"
+src="https://www.youtube.com/embed/0uG4f8Y1vV4?autoplay=1&loop=1&playlist=0uG4f8Y1vV4"
+frameborder="0" allow="autoplay">
+</iframe>
+
+<div class="stars"></div>
+<div class="milkyway"></div>
+
+<div class="header">
+Juntos desde el 26 de Julio de 2024
+</div>
+
+<div class="moon-container">
+<div class="moon" onclick="showMessage()"></div>
+
+<div class="counter">
+Han pasado <span id="days"></span> días ❤️
+</div>
+
+<button class="love-btn" onclick="heartRain()">Te amo ❤️</button>
+
+<div class="secret-message" id="secret">
+La luna ilumina la oscuridad de la noche, pero tu iluminaste mi vida y mi corazón
+</div>
+
+</div>
+
+<!-- ❤️ LINEA DEL TIEMPO -->
+<div class="timeline">
+<div class="timeline-container">
+
+<div class="timeline-item left">
+<div class="timeline-content">
+<div class="timeline-date">26 de Julio de 2024</div>
+<h3>El inicio de nuestra historia</h3>
+<p>El día donde comenzó todo ❤️</p>
+</div>
+</div>
+
+</div>
+</div>
+
+<script>
+
+/* CONTADOR */
+const startDate=new Date(2024,6,26);
+function updateDays(){
+const today=new Date();
+const diff=today-startDate;
+document.getElementById("days").textContent=
+Math.floor(diff/(1000*60*60*24));
+}
+updateDays();
+
+/* CORAZONES NORMAL */
+function createHeart(){
+const heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(20+Math.random()*30)+"px";
+heart.style.animationDuration=(5+Math.random()*5)+"s";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),9000);
+}
+setInterval(createHeart,800);
+
+/* LLUVIA INTENSA */
+function heartRain(){
+for(let i=0;i<40;i++){
+setTimeout(createHeart,i*50);
+}
+}
+
+/* ESTRELLAS FUGACES */
+function shootingStar(){
+const star=document.createElement("div");
+star.className="shooting-star";
+star.style.top=Math.random()*50+"vh";
+star.style.left=Math.random()*50+"vw";
+document.body.appendChild(star);
+setTimeout(()=>star.remove(),1000);
+}
+setInterval(shootingStar,4000);
+
+/* MENSAJE SECRETO */
+function showMessage(){
+const msg=document.getElementById("secret");
+msg.style.opacity="1";
+}
+
+/* ANIMACION SCROLL TIMELINE */
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+});
+
+document.querySelectorAll(".timeline-item").forEach(el=>{
+observer.observe(el);
+});
+
+</script>
+
+</body>
+</html>
