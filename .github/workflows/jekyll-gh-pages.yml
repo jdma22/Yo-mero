@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Juntos ❤️</title>
+
+<style>
+body{
+margin:0;
+min-height:200vh;
+background:#01020a;
+font-family:Arial,sans-serif;
+color:white;
+overflow-x:hidden;
+}
+
+/* ❤️ ENCABEZADO */
+.header{
+position:absolute;
+top:30px;
+width:100%;
+text-align:center;
+font-size:32px;
+font-style:italic;
+letter-spacing:2px;
+z-index:10;
+}
+
+/* ⭐⭐ FONDO ESTRELLAS REALISTA (3 CAPAS) */
+.stars, .stars2, .stars3{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+}
+
+.stars{
+background:
+radial-gradient(2px 2px at 10% 20%, white, transparent),
+radial-gradient(2px 2px at 30% 70%, white, transparent),
+radial-gradient(1px 1px at 50% 10%, white, transparent),
+radial-gradient(1px 1px at 70% 30%, white, transparent),
+radial-gradient(2px 2px at 90% 80%, white, transparent);
+animation:moveStars 120s linear infinite;
+opacity:.9;
+}
+
+.stars2{
+background:
+radial-gradient(1px 1px at 15% 60%, white, transparent),
+radial-gradient(1px 1px at 35% 40%, white, transparent),
+radial-gradient(1px 1px at 65% 70%, white, transparent),
+radial-gradient(1px 1px at 85% 20%, white, transparent);
+animation:moveStars 200s linear infinite;
+opacity:.5;
+}
+
+.stars3{
+background:
+radial-gradient(1px 1px at 25% 30%, white, transparent),
+radial-gradient(1px 1px at 45% 80%, white, transparent),
+radial-gradient(1px 1px at 75% 50%, white, transparent);
+animation:moveStars 300s linear infinite;
+opacity:.3;
+}
+
+@keyframes moveStars{
+from{transform:translateY(0);}
+to{transform:translateY(-1000px);}
+}
+
+/* 🌌 VIA LACTEA */
+.milkyway{
+position:fixed;
+width:200%;
+height:200%;
+background:radial-gradient(circle,rgba(255,255,255,0.15),transparent 60%);
+filter:blur(80px);
+animation:rotateGalaxy 120s linear infinite;
+}
+@keyframes rotateGalaxy{
+from{transform:rotate(0deg);}
+to{transform:rotate(360deg);}
+}
+
+/* 🌙 LUNA */
+.moon-container{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+z-index:5;
+}
+
+.moon{
+width:260px;
+height:260px;
+border-radius:50%;
+background:radial-gradient(circle at 30% 30%,#fff,#ddd 50%,#aaa 80%);
+box-shadow:0 0 80px rgba(255,255,255,0.9),0 0 200px rgba(255,255,255,0.4);
+animation:moonGlow 4s ease-in-out infinite alternate;
+position:relative;
+cursor:pointer;
+}
+
+@keyframes moonGlow{
+from{box-shadow:0 0 80px white,0 0 200px rgba(255,255,255,0.4);}
+to{box-shadow:0 0 120px white,0 0 260px rgba(255,255,255,0.7);}
+}
+
+.moon::after{
+content:"";
+position:absolute;
+width:260px;
+height:260px;
+border-radius:50%;
+background:#01020a;
+left:90px;
+}
+
+/* mensaje secreto */
+.secret-message{
+margin-top:20px;
+max-width:400px;
+opacity:0;
+transition:.5s;
+font-size:20px;
+}
+
+/* contador */
+.counter{margin-top:40px;font-size:26px;}
+
+/* boton */
+.love-btn{
+margin-top:20px;
+padding:12px 30px;
+border:none;
+border-radius:20px;
+font-size:18px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+}
+
+/* corazones */
+.heart{
+position:fixed;
+bottom:-20px;
+color:#ff4d6d;
+animation:floatUp linear forwards;
+}
+@keyframes floatUp{
+to{transform:translateY(-120vh);opacity:0;}
+}
+
+/* ⭐⭐ ESTRELLA FUGAZ */
+.shooting-star{
+position:fixed;
+width:4px;
+height:4px;
+background:white;
+border-radius:50%;
+box-shadow:0 0 20px white,0 0 40px white;
+animation:shoot 1.2s linear forwards;
+}
+
+.shooting-star::after{
+content:"";
+position:absolute;
+width:3px;
+height:120px;
+top:-120px;
+left:50%;
+transform:translateX(-50%);
+background:linear-gradient(white,transparent);
+}
+
+.particle{
+position:fixed;
+width:3px;
+height:3px;
+background:white;
+border-radius:50%;
+animation:particleFade 1s linear forwards;
+}
+
+@keyframes particleFade{
+to{transform:translateY(40px);opacity:0;}
+}
+
+@keyframes shoot{
+from{transform:translate(0,0);}
+to{transform:translate(0,700px);opacity:0;}
+}
+
+/* ===== TIMELINE ===== */
+.timeline{
+margin-top:900px;
+padding:120px 0;
+}
+
+.timeline-container{
+width:80%;
+margin:auto;
+position:relative;
+}
+
+.timeline-container::before{
+content:'';
+position:absolute;
+left:80px;
+top:0;
+height:100%;
+width:4px;
+background:linear-gradient(to bottom,#ff9de6,#7df9ff,#ff9de6);
+box-shadow:0 0 20px #ff9de6,0 0 40px #7df9ff;
+}
+
+.timeline-item{
+position:relative;
+display:flex;
+align-items:center;
+margin:80px 0;
+opacity:0;
+transform:translateY(50px);
+transition:1s;
+}
+.timeline-item.show{opacity:1;transform:translateY(0);}
+
+/* ajolote */
+.timeline-icon{position:absolute;left:50px;}
+.axolotl{
+width:60px;
+animation:floatAxolotl 3s ease-in-out infinite;
+}
+@keyframes floatAxolotl{
+0%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0);}
+}
+
+.timeline-content{
+margin-left:160px;
+background:rgba(255,255,255,0.08);
+padding:20px;
+border-radius:12px;
+backdrop-filter:blur(10px);
+}
+
+.timeline-date{
+font-weight:bold;
+margin-bottom:10px;
+color:#ffd6e0;
+}
+
+/* ✅ FOTO TIMELINE RECORTADA */
+.timeline-photo{
+width:100%;
+height:250px;
+object-fit:cover;
+border-radius:12px;
+margin-top:15px;
+display:block;
+}
+
+</style>
+</head>
+
+<body>
+
+<iframe width="0" height="0"
+src="https://www.youtube.com/embed/0uG4f8Y1vV4?autoplay=1&loop=1&playlist=0uG4f8Y1vV4"
+allow="autoplay"></iframe>
+
+<div class="stars"></div>
+<div class="stars2"></div>
+<div class="stars3"></div>
+<div class="milkyway"></div>
+
+<div class="header">
+Juntos desde el 26 de Julio de 2024
+</div>
+
+<div class="moon-container">
+<div class="moon" onclick="showMessage()"></div>
+
+<div class="counter">
+Han pasado <span id="days"></span> días ❤️
+</div>
+
+<button class="love-btn" onclick="heartRain()">Te amo ❤️</button>
+
+<div class="secret-message" id="secret">
+La luna ilumina la oscuridad de la noche, pero tu iluminaste mi vida y mi corazón
+</div>
+</div>
+
+<div class="timeline">
+<div class="timeline-container">
+
+<div class="timeline-item">
+<div class="timeline-icon">
+<svg class="axolotl" viewBox="0 0 100 100">
+<ellipse cx="50" cy="60" rx="25" ry="18" fill="#ff9de6"/>
+<circle cx="40" cy="55" r="3"/>
+<circle cx="60" cy="55" r="3"/>
+<path d="M45 65 Q50 70 55 65" stroke="black" fill="none"/>
+</svg>
+</div>
+
+<div class="timeline-content">
+<div class="timeline-date">26 de Julio de 2024</div>
+<h3>El inicio de nuestra historia</h3>
+<p>El día donde comenzó todo ❤️</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-icon">
+<svg class="axolotl" viewBox="0 0 100 100">
+<ellipse cx="50" cy="60" rx="25" ry="18" fill="#ff9de6"/>
+<circle cx="40" cy="55" r="3"/>
+<circle cx="60" cy="55" r="3"/>
+<path d="M45 65 Q50 70 55 65" stroke="black" fill="none"/>
+</svg>
+</div>
+
+<div class="timeline-content">
+<div class="timeline-date">02/11/2025</div>
+<h3>Un hermoso día de muertos</h3>
+<p>El día en que yo quise ser tu mejor guerrero y tu trajiste magia a mi vida ❤️</p>
+<img src="Diademuertos.jpeg" class="timeline-photo">
+</div>
+
+</div>
+
+</div>
+</div>
+
+<script>
+const startDate=new Date(2024,6,26);
+function updateDays(){
+const today=new Date();
+document.getElementById("days").textContent=
+Math.floor((today-startDate)/(1000*60*60*24));
+}
+updateDays();
+
+function createHeart(){
+const heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(20+Math.random()*30)+"px";
+heart.style.animationDuration=(5+Math.random()*5)+"s";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),9000);
+}
+setInterval(createHeart,800);
+
+function heartRain(){
+for(let i=0;i<40;i++) setTimeout(createHeart,i*50);
+}
+
+function shootingStar(){
+const star=document.createElement("div");
+star.className="shooting-star";
+star.style.top=Math.random()*20+"vh";
+star.style.left=Math.random()*100+"vw";
+document.body.appendChild(star);
+
+for(let i=0;i<12;i++){
+setTimeout(()=>{
+const p=document.createElement("div");
+p.className="particle";
+p.style.left=star.style.left;
+p.style.top=parseFloat(star.style.top)+10+"vh";
+document.body.appendChild(p);
+setTimeout(()=>p.remove(),1000);
+},i*60);
+}
+
+setTimeout(()=>star.remove(),1200);
+}
+setInterval(shootingStar,3500);
+
+function showMessage(){
+document.getElementById("secret").style.opacity="1";
+}
+
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting) entry.target.classList.add("show");
+});
+});
+document.querySelectorAll(".timeline-item").forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
